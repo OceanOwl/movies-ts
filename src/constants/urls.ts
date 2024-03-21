@@ -9,7 +9,9 @@ const urls = {
     movie: {
         byId: (id: number): string => `${movie}/${id}`
     },
-    movies: '/discover/movie'
+    movies: '/discover/movie',
+    movieImage: 'https://image.tmdb.org/t/p/w300',
+
 
 }
 

@@ -3,12 +3,11 @@ import {FC, useEffect} from 'react';
 import css from './Movies.module.css'
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {moviesActions} from "../../redux";
+import {Movie} from "../Movie/Movie";
+import {IMovie} from "../../interfaces";
 
-interface IProps {
 
-}
-
-const Movies: FC<IProps> = () => {
+const Movies = () => {
 
     const {movies} = useAppSelector(state => state.movies);
 
@@ -20,7 +19,7 @@ const Movies: FC<IProps> = () => {
 
     return (
         <div className={css.Movies}>
-            {JSON.stringify(movies)}
+            {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
         </div>
     );
 };

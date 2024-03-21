@@ -1,3 +1,11 @@
-.Movies{
-
+.Body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.Movies {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
