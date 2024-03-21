@@ -7,8 +7,10 @@ import css from './Header.module.css'
 const Header = () => {
     return (
         <div className={css.Header}>
-            <NavLink to={'/'}>Movies</NavLink>
-            <NavLink to={'/genres'}>Genres</NavLink>
+            <div>
+                <NavLink to={'/'}>Movies</NavLink>
+                <NavLink to={'/genres'}>Genres</NavLink>
+            </div>
             <Switch/>
 
         </div>
