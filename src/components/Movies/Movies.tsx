@@ -1,10 +1,9 @@
-import {FC, useEffect} from 'react';
+import {useEffect} from 'react';
 
 import css from './Movies.module.css'
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {moviesActions} from "../../redux";
 import {Movie} from "../Movie/Movie";
-import {IMovie} from "../../interfaces";
 
 
 const Movies = () => {
