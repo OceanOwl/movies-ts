@@ -1,14 +1,13 @@
-
 .light {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background-color: #fff;
     color: #333;
     border-radius: 5px;
 }
 
 .dark {
-    margin: 0px;
+    margin: 0;
     background-color: #333;
     color: #fff;
     border-radius: 5px;
