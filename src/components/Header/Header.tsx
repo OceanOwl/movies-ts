@@ -1,18 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {NavLink} from "react-router-dom";
 import {Switch} from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
 
 import css from './Header.module.css'
+import {RootState} from "../../types";
+import {themeActions} from "../../redux";
 
 
 const Header = () => {
 
-    const [darkMode, setDarkMode] = useState(false);
+    const dispatch = useDispatch();
+    const themeMode = useSelector((state: RootState) => state.theme.mode);
 
     const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
+        dispatch(themeActions.toggleTheme());
     };
-
 
     return (
         <div className={css.Header}>
@@ -21,9 +24,10 @@ const Header = () => {
                 <NavLink to={'/'}>Movies</NavLink>
                 <NavLink to={'/genres'}>Genres</NavLink>
             </div>
-            <Switch checked={darkMode} onChange={toggleDarkMode}/>
+            <Switch onClick={toggleDarkMode}/>
+
         </div>
     );
 };
 
-export {Header};
+export {Header}

@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {useSearchParams} from "react-router-dom";
 
 import css from './Movies.module.css'
-import {moviesActions} from "../../redux";
+import {moviesActions, ThemeMode} from "../../redux";
 import {Movie} from "../Movie/Movie";
 
 
@@ -37,12 +37,14 @@ const Movies = () => {
 
     return (
         <div className={css.Movies}>
+
             {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
 
             <div>
                 <button disabled={+page === 1} onClick={prevHandler}>----------------------</button>
                 <button disabled={+page === 500} onClick={nextHandler}>++++++++++++++++++++++</button>
             </div>
+
         </div>
 
 

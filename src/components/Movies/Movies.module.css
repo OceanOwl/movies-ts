@@ -9,3 +9,16 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+.light {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.dark {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}

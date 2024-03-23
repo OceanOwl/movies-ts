@@ -1,11 +1,13 @@
 .Header {
     width: 100%;
     height: 50px;
-    background: #1e2c54;
+    background: #222d33;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.Header a{
+
+.Header a {
     padding-left: 10px;
 }
+
