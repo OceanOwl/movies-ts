@@ -1,18 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {Switch} from "@mui/material";
 
-import {Switch} from "@mui/joy";
 import css from './Header.module.css'
 
+
 const Header = () => {
+
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+    };
+
+
     return (
         <div className={css.Header}>
+
             <div>
                 <NavLink to={'/'}>Movies</NavLink>
                 <NavLink to={'/genres'}>Genres</NavLink>
             </div>
-            <Switch/>
-
+            <Switch checked={darkMode} onChange={toggleDarkMode}/>
         </div>
     );
 };
