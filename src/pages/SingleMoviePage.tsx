@@ -4,14 +4,13 @@ import {SelectedMovie} from "../components/SelectedMovie/SelectedMovie";
 import {IMovie} from "../interfaces";
 
 interface IProps {
-selectedMovie:IMovie
+    selectedMovie: IMovie
 }
 
 const SingleMoviePage: FC<IProps> = ({selectedMovie}) => {
     return (
         <div>
-            {SelectedMovie&& <SelectedMovie selectedMovie={SelectedMovie}/>}
-
+            <SelectedMovie selectedMovie={selectedMovie}/>
         </div>
     );
 };
