@@ -1,11 +1,35 @@
-import React from 'react';
+import {FC} from 'react';
 
-const SingleMoviePage = () => {
+import {SelectedMovie} from "../components/SelectedMovie/SelectedMovie";
+import {IMovie} from "../interfaces";
+
+interface IProps {
+selectedMovie:IMovie
+}
+
+const SingleMoviePage: FC<IProps> = ({selectedMovie}) => {
     return (
         <div>
-            SingleMoviePage
+            {SelectedMovie&& <SelectedMovie selectedMovie={SelectedMovie}/>}
+
         </div>
     );
 };
 
 export {SingleMoviePage};
+
+// import React from 'react';
+//
+// import {SelectedMovie} from "../components/SelectedMovie/SelectedMovie";
+//
+//
+// const SingleMoviePage = () => {
+//
+//     return (
+//         <div>
+//             {SelectedMovie&& <SelectedMovie selectedMovie={SelectedMovie}/>}
+//         </div>
+//     );
+// };
+//
+// export {SingleMoviePage};

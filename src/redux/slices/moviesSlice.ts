@@ -8,6 +8,8 @@ interface IState {
     loading: boolean;
     error: string | null;
     movies: IMovie[];
+    selectedMovie: IMovie;
+
 
 }
 
@@ -15,7 +17,8 @@ const initialState: IState = {
     loading: false,
     error: null,
     page: null,
-    movies: []
+    movies: [],
+    selectedMovie: null
 };
 
 const getAll = createAsyncThunk<IPagination<IMovie>, number>(
@@ -30,32 +33,53 @@ const getAll = createAsyncThunk<IPagination<IMovie>, number>(
     }
 );
 
+const getById = createAsyncThunk<IMovie, { id: number }>(
+    'moviesSlice/getById',
+    async ({id}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getById(id);
+            return data
+        } catch (e) {
+            return rejectWithValue(e)
+        }
+
+    }
+);
+
 const moviesSlice = createSlice({
     name: 'moviesSlice',
     initialState,
     reducers: {},
-    extraReducers: builder =>
-        builder
-            .addCase(getAll.fulfilled, (state, action) => {
-                state.loading = false;
-                state.page = action.payload;
-                state.movies = action.payload?.results || [];
-            })
-            .addCase(getAll.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(getAll.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload as string;
-            })
+    extraReducers:
+        builder =>
+            builder
+                .addCase(getAll.fulfilled, (state, action) => {
+                    state.loading = false;
+                    state.page = action.payload;
+                    state.movies = action.payload?.results || [];
+                })
+                .addCase(getAll.pending, (state) => {
+                    state.loading = true;
+                    state.error = null;
+                })
+                .addCase(getAll.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.payload as string;
+                })
+                .addCase(getById.fulfilled, (state, action) => {
+                    state.loading = false;
+                    state.selectedMovie = action.payload
+                    console.log(action.payload)
+                })
 })
 
 const {reducer: moviesReducer, actions} = moviesSlice;
 
 const moviesActions = {
     ...actions,
-    getAll
+    getAll,
+    getById
+
 }
 
 export {
