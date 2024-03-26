@@ -10,7 +10,7 @@ export interface IMovie {
     budget: number;
     genres: { id: number; name: string }[];
     homepage: string;
-    id: number;
+    id: string;
     imdb_id: string;
     original_language: string;
     original_title: string;

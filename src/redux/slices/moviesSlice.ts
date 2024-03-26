@@ -33,7 +33,7 @@ const getAll = createAsyncThunk<IPagination<IMovie>, number>(
     }
 );
 
-const getById = createAsyncThunk<IMovie, { id: number }>(
+const getById = createAsyncThunk<IMovie, { id: string }>(
     'moviesSlice/getById',
     async ({id}, {rejectWithValue}) => {
         try {

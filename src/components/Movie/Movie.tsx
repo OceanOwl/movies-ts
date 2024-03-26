@@ -1,11 +1,12 @@
 import {FC} from 'react';
 
+import {useAppDispatch} from "../../hooks/reduxHooks";
+import {Link} from "react-router-dom";
+
+import css from './Movie.module.css'
 import {IMovie} from "../../interfaces";
 import {urls} from "../../constants/urls";
-import css from './Movie.module.css'
-import {useAppDispatch} from "../../hooks/reduxHooks";
 import {moviesActions} from "../../redux";
-import {Link} from "react-router-dom";
 
 interface IProps {
     movie: IMovie
@@ -28,6 +29,7 @@ const Movie: FC<IProps> = ({movie}) => {
             <div className={css.MovieCard}>
                 <img src={movieImage} alt="img"/>
                 {/*<div onClick={() => dispatch(moviesActions.getById({id}))}>{title}</div>*/}
+                <div>{vote_average}</div>
                 <Link onClick={() => dispatch(moviesActions.getById({id}))} to={`${id}`}>{title}</Link>
             </div>
 

@@ -7,7 +7,7 @@ const genres = '/genre/movie/list'
 const urls = {
     genres,
     movie: {
-        byId: (id: number): string => `${movie}/${id}`
+        byId: (id: string): string => `${movie}/${id}`
     },
     movies: '/discover/movie',
     movieImage: 'https://image.tmdb.org/t/p/w300',
