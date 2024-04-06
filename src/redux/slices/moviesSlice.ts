@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {IMovie, IPagination} from "../../interfaces";
 import {movieService} from "../../services";
+import {ITrailer} from "../../interfaces/trailerInterface";
 
 interface IState {
     page: IPagination<IMovie[]> | null;
@@ -9,6 +10,7 @@ interface IState {
     error: string | null;
     movies: IMovie[];
     selectedMovie: IMovie;
+    trailers: ITrailer[];
 
 
 }
@@ -18,7 +20,9 @@ const initialState: IState = {
     error: null,
     page: null,
     movies: [],
-    selectedMovie: null
+    selectedMovie: null,
+    trailers: [],
+
 };
 
 const getAll = createAsyncThunk<IPagination<IMovie>, number>(
@@ -43,6 +47,18 @@ const getById = createAsyncThunk<IMovie, { id: string }>(
             return rejectWithValue(e)
         }
 
+    }
+);
+
+const getMovieTrailers = createAsyncThunk<ITrailer[], { id: string }>(
+    'movies/getTrailers',
+    async ({id}, {rejectWithValue}) => {
+        try {
+            const trailers = await movieService.getTrailers(id);
+            return trailers.data
+        } catch (e) {
+            return rejectWithValue(e);
+        }
     }
 );
 
@@ -78,6 +94,18 @@ const moviesSlice = createSlice({
                     state.loading = false;
                     state.error = action.payload as string;
                 })
+                .addCase(getMovieTrailers.fulfilled, (state, action) => {
+                    state.loading = false;
+                    state.trailers = action.payload;
+                })
+                .addCase(getMovieTrailers.pending, (state) => {
+                    state.loading = true;
+                    state.error = null;
+                })
+                .addCase(getMovieTrailers.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.payload as string;
+                })
 })
 
 const {reducer: moviesReducer, actions} = moviesSlice;
@@ -85,7 +113,8 @@ const {reducer: moviesReducer, actions} = moviesSlice;
 const moviesActions = {
     ...actions,
     getAll,
-    getById
+    getById,
+    getMovieTrailers
 
 }
 
