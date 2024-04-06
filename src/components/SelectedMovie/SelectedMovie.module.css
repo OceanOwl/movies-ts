@@ -1,8 +1,44 @@
-
-.full-screen{
+.mainInfoContainer {
+    display: flex;
+    position: absolute;
+    height: 450px;
     width: 100%;
-    height: 100%;
+    top: 60px;
+    left: 40px;
+    padding: 30px 40px;
+    box-sizing: border-box;
+
+
+}
+
+.backdropImageContainer {
+    height: 530px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    filter: blur(2px);
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.backdropImage {
+    height: 530px;
+    width: 100%;
+    filter: opacity(0.5);
+}
+
+.moviePoster {
+    height: 450px;
+    width: 300px;
+    border-radius: 5px;
+    filter: drop-shadow(2px 4px 6px black);
+    z-index: 1;
+
+}
+
+.textInfo {
+    width: 100%;
 }

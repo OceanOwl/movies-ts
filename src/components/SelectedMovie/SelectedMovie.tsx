@@ -19,32 +19,47 @@ const SelectedMovie: FC<IProps> = () => {
         useEffect(() => {
             dispatch(moviesActions.getById({id}));
         }, [dispatch, id]);
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+        if (loading) {
+            return <div>Loading...</div>;
+        }
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+        if (error) {
+            return <div>Error: {error}</div>;
+        }
 
-    if (!selectedMovie) {
-        return;
-    }
+        if (!selectedMovie) {
+            return;
+        }
 
-
-
-    return (
+        return (
             <div className={css.SelectedMovie}>
-                <div>{id}</div>
                 {selectedMovie && (
-                    <div className="full-screen">
-                        <img src={`${urls.movieImage}${selectedMovie.backdrop_path}`} alt={selectedMovie.title}/>
-                        <img src={`${urls.movieImage}${selectedMovie.backdrop_path}`} alt={selectedMovie.title}/>
+                    <div>
                         <div>
-                            {selectedMovie.genres.map(genre => (
-                                <div key={genre.id}>{genre.name}</div>
-                            ))}
+                            <div className={css.backdropImageContainer}>
+
+                                <img className={css.backdropImage}
+                                     src={`${urls.movieImageHigherQuality}${selectedMovie.backdrop_path}`}
+                                     alt={selectedMovie.title}/>
+                            </div>
+
+                            <div className={css.mainInfoContainer}>
+                                <img className={css.moviePoster}
+                                     src={`${urls.movieImageLowerQuality}${selectedMovie.poster_path}`}
+                                     alt={selectedMovie.title}/>
+                                <div className={css.textInfo}>
+                                    <h1>{selectedMovie.title}</h1>
+                                    <div>
+                                        {selectedMovie.genres.map(genre => (
+                                            <div key={genre.id}>{genre.name}</div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
+
                     </div>
                 )}
             </div>

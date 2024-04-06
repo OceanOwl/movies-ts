@@ -10,7 +10,8 @@ const urls = {
         byId: (id: string): string => `${movie}/${id}`
     },
     movies: '/discover/movie',
-    movieImage: 'https://image.tmdb.org/t/p/w300',
+    movieImageHigherQuality: 'https://image.tmdb.org/t/p/original',
+    movieImageLowerQuality:'https://image.tmdb.org/t/p/w500'
 
 
 }

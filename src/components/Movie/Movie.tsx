@@ -16,7 +16,7 @@ const Movie: FC<IProps> = ({movie}) => {
 
     const {title, poster_path, vote_average} = movie
 
-    const movieImage = `${urls.movieImage}${poster_path}`
+    const movieImage = `${urls.movieImageLowerQuality}${poster_path}`
 
     const dispatch = useAppDispatch();
 
