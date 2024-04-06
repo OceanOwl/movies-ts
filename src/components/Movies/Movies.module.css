@@ -3,12 +3,14 @@
     display: flex;
     justify-content: center;
 }
+
 .Movies {
     width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .light {
     background-color: #fff;
     color: #333;

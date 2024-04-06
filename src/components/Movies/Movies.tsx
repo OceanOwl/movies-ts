@@ -34,7 +34,6 @@ const Movies = () => {
         dispatch(moviesActions.getAll(+page))
     }, [dispatch, page])
 
-
     return (
         <div className={css.Movies}>
 

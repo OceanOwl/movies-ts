@@ -20,7 +20,7 @@ const Movie: FC<IProps> = ({movie}) => {
 
     const dispatch = useAppDispatch();
 
-    const id = movie.id
+    const id: string = movie.id
 
     return (
         <div className={css.Movie}>
@@ -28,7 +28,6 @@ const Movie: FC<IProps> = ({movie}) => {
 
             <div className={css.MovieCard}>
                 <img src={movieImage} alt="img"/>
-                {/*<div onClick={() => dispatch(moviesActions.getById({id}))}>{title}</div>*/}
                 <div>{vote_average}</div>
                 <Link onClick={() => dispatch(moviesActions.getById({id}))} to={`${id}`}>{title}</Link>
             </div>

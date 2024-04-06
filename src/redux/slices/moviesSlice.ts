@@ -69,7 +69,14 @@ const moviesSlice = createSlice({
                 .addCase(getById.fulfilled, (state, action) => {
                     state.loading = false;
                     state.selectedMovie = action.payload
-                    console.log(action.payload)
+                })
+                .addCase(getById.pending, (state) => {
+                    state.loading = true;
+                    state.error = null;
+                })
+                .addCase(getById.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.payload as string;
                 })
 })
 
