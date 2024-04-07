@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 export enum ThemeMode {
     Light = 'light',
@@ -24,11 +24,9 @@ const themeSlice = createSlice({
 });
 
 
-
-
 const {reducer: themeReducer, actions} = themeSlice;
 
-const themeActions={
+const themeActions = {
     ...actions
 
 }

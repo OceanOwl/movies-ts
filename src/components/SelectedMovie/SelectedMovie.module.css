@@ -49,8 +49,13 @@
 }
 .voteAverage{
     font-size: x-large;
-    padding: 0px 5px;
+    padding: 0 5px;
 }
 .trailersContainer{
+
+}
+.trailerItem{
+    position: absolute;
+    top: 90px;
 
 }

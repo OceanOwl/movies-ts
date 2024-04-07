@@ -38,8 +38,7 @@ const SelectedMovie: FC<IProps> = () => {
         if (!selectedMovie) {
             return;
         }
-        //     console.log(selectedMovie);
-        // console.log(trailer);
+
 
         return (
             <div className={css.SelectedMovie}>
@@ -66,11 +65,9 @@ const SelectedMovie: FC<IProps> = () => {
                                                 defaultValue={selectedMovie.vote_average}
                                                 max={10}
                                                 precision={0.1}
-                                                readOnly
-                                        />
+                                                readOnly/>
                                         <div className={css.voteAverage}>{selectedMovie.vote_average}</div>
                                         <div>({selectedMovie.vote_count})</div>
-
                                     </div>
 
                                     <div>{selectedMovie.runtime} min</div>
@@ -80,8 +77,10 @@ const SelectedMovie: FC<IProps> = () => {
                                             <div key={genre.id}>{genre.name}</div>
                                         ))}
                                     </div>
+
                                     <h3>Overview</h3>
                                     <div>{selectedMovie.overview}</div>
+
                                     <div className={css.trailersContainer}>
                                         {trailer && trailer.results.length>1 && (
                                             <button onClick={handleShowTrailer}>Show Trailer</button>
