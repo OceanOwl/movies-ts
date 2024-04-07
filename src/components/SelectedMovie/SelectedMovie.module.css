@@ -12,7 +12,7 @@
 }
 
 .backdropImageContainer {
-    height: 530px;
+    height: calc(100vh - 55px);
     width: 100%;
     padding: 0;
     margin: 0;
@@ -22,10 +22,11 @@
     align-items: center;
     position: relative;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .backdropImage {
-    height: 530px;
+    height: 100%;
     width: 100%;
     filter: opacity(0.5);
 }
@@ -52,10 +53,16 @@
     padding: 0 5px;
 }
 .trailersContainer{
-
+    position: relative;
+    width: 100%;
 }
 .trailerItem{
     position: absolute;
-    top: 90px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+
 
 }
