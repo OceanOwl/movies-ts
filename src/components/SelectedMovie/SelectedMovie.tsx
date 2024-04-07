@@ -1,4 +1,4 @@
-import {FC, useEffect} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {useParams} from "react-router-dom";
 
@@ -6,7 +6,6 @@ import {moviesActions} from "../../redux";
 import {urls} from "../../constants/urls";
 import css from './SelectedMovie.module.css'
 import {Rating} from "@mui/material";
-import {ITrailer} from "../../interfaces/trailerInterface";
 
 
 interface IProps {
@@ -17,11 +16,17 @@ const SelectedMovie: FC<IProps> = () => {
         const {id} = useParams();
         const dispatch = useAppDispatch();
         const {selectedMovie, loading, error, trailer} = useAppSelector(state => state.movies);
+        const [showTrailer, setShowTrailer] = useState(false);
+
 
         useEffect(() => {
             dispatch(moviesActions.getById({id}));
             dispatch(moviesActions.getMovieTrailers({id}));
         }, [dispatch, id]);
+
+        const handleShowTrailer = () => {
+            setShowTrailer(true);
+        };
 
         if (loading) {
             return <div>Loading...</div>;
@@ -33,10 +38,10 @@ const SelectedMovie: FC<IProps> = () => {
         if (!selectedMovie) {
             return;
         }
-        console.log(selectedMovie);
-    console.log(trailer.results);
+        //     console.log(selectedMovie);
+        // console.log(trailer);
 
-    return (
+        return (
             <div className={css.SelectedMovie}>
                 {selectedMovie && (
                     <div>
@@ -78,21 +83,29 @@ const SelectedMovie: FC<IProps> = () => {
                                     <h3>Overview</h3>
                                     <div>{selectedMovie.overview}</div>
                                     <div className={css.trailersContainer}>
-                                        {trailer.results.map(trailer=>
-                                            <div key={trailer.id}>{}</div>
-
+                                        {trailer && trailer.results.length>1 && (
+                                            <button onClick={handleShowTrailer}>Show Trailer</button>
                                         )}
-                                    {/*        <div key={trailer.id} className={css.trailerItem}>*/}
-                                    {/*            <iframe*/}
-                                    {/*                width="560"*/}
-                                    {/*                height="315"*/}
-                                    {/*                src={`https://www.youtube.com/embed/${trailer.}`}*/}
-                                    {/*                title={trailer.name}*/}
-                                    {/*                allowFullScreen*/}
-                                    {/*            ></iframe>*/}
-                                    {/*            <p>{trailer.name}</p>*/}
-                                    {/*        </div>*/}
-                                    {/*    ))}*/}
+                                        {showTrailer && trailer && (
+                                            <div className={css.trailersContainer}>
+                                                {trailer.results
+                                                    .filter(trailer => trailer.name === 'Official Trailer')
+                                                    .map(trailer => (
+
+                                                    <div key={trailer.id} className={css.trailerItem}>
+                                                        <iframe
+                                                            width="560"
+                                                            height="315"
+                                                            src={`https://www.youtube.com/embed/${trailer.key}`}
+                                                            title={trailer.name}
+                                                            allowFullScreen
+                                                        ></iframe>
+                                                        <p>{trailer.name}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+
                                     </div>
                                 </div>
 
