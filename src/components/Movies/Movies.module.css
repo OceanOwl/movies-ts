@@ -29,3 +29,6 @@ html, body{
 a{
     text-decoration: none;
 }
+.dark a{
+    color: white;
+}
