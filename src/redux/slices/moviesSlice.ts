@@ -10,7 +10,7 @@ interface IState {
     error: string | null;
     movies: IMovie[];
     selectedMovie: IMovie;
-    trailers: ITrailer[];
+    trailer: ITrailer;
 
 
 }
@@ -21,7 +21,7 @@ const initialState: IState = {
     page: null,
     movies: [],
     selectedMovie: null,
-    trailers: [],
+    trailer: null,
 
 };
 
@@ -50,12 +50,12 @@ const getById = createAsyncThunk<IMovie, { id: string }>(
     }
 );
 
-const getMovieTrailers = createAsyncThunk<ITrailer[], { id: string }>(
+const getMovieTrailers = createAsyncThunk<ITrailer, { id: string }>(
     'movies/getTrailers',
     async ({id}, {rejectWithValue}) => {
         try {
-            const trailers = await movieService.getTrailers(id);
-            return trailers.data
+            const  trailer= await movieService.getTrailers(id);
+            return trailer.data
         } catch (e) {
             return rejectWithValue(e);
         }
@@ -96,7 +96,7 @@ const moviesSlice = createSlice({
                 })
                 .addCase(getMovieTrailers.fulfilled, (state, action) => {
                     state.loading = false;
-                    state.trailers = action.payload;
+                    state.trailer = action.payload;
                 })
                 .addCase(getMovieTrailers.pending, (state) => {
                     state.loading = true;

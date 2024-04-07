@@ -16,7 +16,7 @@ const SelectedMovie: FC<IProps> = () => {
 
         const {id} = useParams();
         const dispatch = useAppDispatch();
-        const {selectedMovie, loading, error, trailers} = useAppSelector(state => state.movies);
+        const {selectedMovie, loading, error, trailer} = useAppSelector(state => state.movies);
 
         useEffect(() => {
             dispatch(moviesActions.getById({id}));
@@ -34,7 +34,7 @@ const SelectedMovie: FC<IProps> = () => {
             return;
         }
         console.log(selectedMovie);
-    console.log(trailers.results);
+    console.log(trailer.results);
 
     return (
             <div className={css.SelectedMovie}>
@@ -77,8 +77,11 @@ const SelectedMovie: FC<IProps> = () => {
                                     </div>
                                     <h3>Overview</h3>
                                     <div>{selectedMovie.overview}</div>
-                                    {/*<div className={css.trailersContainer}>*/}
-                                    {/*    {trailers && trailers.map((trailer: ITrailer) => (*/}
+                                    <div className={css.trailersContainer}>
+                                        {trailer.results.map(trailer=>
+                                            <div key={trailer.id}>{}</div>
+
+                                        )}
                                     {/*        <div key={trailer.id} className={css.trailerItem}>*/}
                                     {/*            <iframe*/}
                                     {/*                width="560"*/}
@@ -90,7 +93,7 @@ const SelectedMovie: FC<IProps> = () => {
                                     {/*            <p>{trailer.name}</p>*/}
                                     {/*        </div>*/}
                                     {/*    ))}*/}
-                                    {/*</div>*/}
+                                    </div>
                                 </div>
 
                             </div>
