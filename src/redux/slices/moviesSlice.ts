@@ -3,6 +3,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IMovie, IPagination} from "../../interfaces";
 import {movieService} from "../../services";
 import {ITrailer} from "../../interfaces/trailerInterface";
+import {IGenre} from "../../interfaces/genreInterface";
 
 interface IState {
     page: IPagination<IMovie[]> | null;
@@ -11,6 +12,7 @@ interface IState {
     movies: IMovie[];
     selectedMovie: IMovie;
     trailer: ITrailer;
+    genres: IGenre[];
 
 
 }
@@ -22,6 +24,7 @@ const initialState: IState = {
     movies: [],
     selectedMovie: null,
     trailer: null,
+    genres:[]
 
 };
 

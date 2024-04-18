@@ -1,9 +1,11 @@
 import React from 'react';
 
+import {MovieGenres} from "../components/MovieGenres/MovieGenres";
+
 const GenresPage = () => {
     return (
         <div>
-            GenresPage
+            <MovieGenres/>
         </div>
     );
 };

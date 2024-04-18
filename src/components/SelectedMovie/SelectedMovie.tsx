@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 import {moviesActions} from "../../redux";
 import {urls} from "../../constants/urls";
@@ -39,8 +39,8 @@ const SelectedMovie: FC<IProps> = () => {
         if (!selectedMovie) {
             return;
         }
-
-        return (
+    console.log(selectedMovie);
+    return (
             <div className={css.SelectedMovie}>
                 {selectedMovie && (
                     <div>
@@ -74,7 +74,7 @@ const SelectedMovie: FC<IProps> = () => {
 
                                     <div>
                                         {selectedMovie.genres.map(genre => (
-                                            <div key={genre.id}>{genre.name}</div>
+                                            <Link key={genre.id} to={`/genres/${genre.id}`}>{genre.name}</Link>
                                         ))}
                                     </div>
 
