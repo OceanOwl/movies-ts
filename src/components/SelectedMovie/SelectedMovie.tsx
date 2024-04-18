@@ -84,8 +84,6 @@ const SelectedMovie: FC<IProps> = () => {
                                         <PlayCircle sx={{mr: 1}}/>
                                         Play Trailer
                                     </Fab>
-
-
                                 </div>
 
                             </div>
