@@ -1,0 +1,27 @@
+.trailerContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.closeButton {
+    padding: 0 0 310px 20px;
+    height: 300px;
+    display: flex;
+    cursor: pointer;
+}
+
+.trailerItem {
+    width: 760px;
+    height: 515px;
+}
+
+.trailerItem iframe {
+    width: 100%;
+    height: 100%;
+}

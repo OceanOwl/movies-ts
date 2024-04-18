@@ -1,17 +1,15 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {Switch} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 
+import {Switch} from "@mui/material";
 import css from './Header.module.css'
-import {RootState} from "../../types";
 import {themeActions} from "../../redux";
 
 
 const Header = () => {
 
     const dispatch = useDispatch();
-    const themeMode = useSelector((state: RootState) => state.theme.mode);
 
     const toggleDarkMode = () => {
         dispatch(themeActions.toggleTheme());
