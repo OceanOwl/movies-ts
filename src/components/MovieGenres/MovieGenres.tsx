@@ -1,30 +1,30 @@
 import React, {useEffect} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {Movie} from "../Movie/Movie";
-import {useDispatch} from "react-redux";
 import {moviesActions} from "../../redux";
 
 const MovieGenres = () => {
     const {genreId} = useParams();
     const dispatch = useAppDispatch();
     const {movies, genres} = useAppSelector(state => state.movies);
+    const [query] = useSearchParams({page: '1'});
+    const page = query.get('page');
+
+
     useEffect(() => {
-        dispatch(moviesActions.getGenres())
-    }, [])
+        dispatch(moviesActions.getGenres());
+        // dispatch(moviesActions.getAll(+page))
+    }, [dispatch, page])
     console.log(genres);
 
-    if (!genres) {
+    if (!genres||!movies) {
         return <div>Loading genres...</div>;
     }
-
     const genreMovies = movies.filter(movie =>
-        movie.genres &&
-        movie.genres.some(genre => +genre.id === +genreId)
-    );
-
-
-    console.log(movies);
+        movie.genre_ids &&
+        movie.genre_ids.some(genre => genre === +genreId)
+);
     console.log(genreId);
     console.log(genreMovies);
 
