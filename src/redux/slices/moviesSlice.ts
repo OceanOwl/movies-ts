@@ -5,6 +5,7 @@ import {movieService} from "../../services";
 import {ITrailer} from "../../interfaces/trailerInterface";
 import {IGenre} from "../../interfaces/genreInterface";
 
+
 interface IState {
     page: IPagination<IMovie[]> | null;
     loading: boolean;
@@ -24,7 +25,7 @@ const initialState: IState = {
     movies: [],
     selectedMovie: null,
     trailer: null,
-    genres:[]
+    genres: []
 
 };
 
@@ -57,10 +58,21 @@ const getMovieTrailers = createAsyncThunk<ITrailer, { id: string }>(
     'movies/getTrailers',
     async ({id}, {rejectWithValue}) => {
         try {
-            const  trailer= await movieService.getTrailers(id);
+            const trailer = await movieService.getTrailers(id);
             return trailer.data
         } catch (e) {
             return rejectWithValue(e);
+        }
+    }
+);
+const getGenres = createAsyncThunk<IGenre[], void>(
+    'moviesSlice/getGenres',
+    async (_, { rejectWithValue }) => {
+        try {
+            const { data } = await movieService.getGenres();
+            return data;
+        } catch (error) {
+            return rejectWithValue(error);
         }
     }
 );
@@ -109,6 +121,16 @@ const moviesSlice = createSlice({
                     state.loading = false;
                     state.error = action.payload as string;
                 })
+                .addCase(getGenres.fulfilled, (state, action) => {
+                    state.loading = false;
+                    state.genres = action.payload;
+                })
+                .addCase(getGenres.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.payload as string;
+                })
+
+
 })
 
 const {reducer: moviesReducer, actions} = moviesSlice;
@@ -117,7 +139,8 @@ const moviesActions = {
     ...actions,
     getAll,
     getById,
-    getMovieTrailers
+    getMovieTrailers,
+    getGenres
 
 }
 

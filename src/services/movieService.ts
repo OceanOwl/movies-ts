@@ -4,13 +4,15 @@ import {urls} from "../constants/urls";
 import {IRes} from "../types";
 import {IMovie, IPagination} from "../interfaces";
 import {ITrailer} from "../interfaces/trailerInterface";
+import {IGenre} from "../interfaces/genreInterface";
 
 
 const movieService = {
     getAll: (page: number = 1): IRes<IPagination<IMovie>> => axiosService.get(urls.movies, {params: {page}}),
     getById: (id: string): IRes<IMovie> => axiosService.get(urls.movie.byId(id)),
     getTrailers: (id: string): IRes<ITrailer> => axiosService.get(urls.trailer(id)),
-    getMoviesByGenreId:(page: number = 1, id:string):IRes<IPagination<IMovie>> =>axiosService.get(urls.movies, {params:{page, id}})
+    // getMoviesByGenreId:(page: number = 1, id:string):IRes<IPagination<IMovie>> =>axiosService.get(urls.movies, {params:{page, id}})
+    getGenres: (): IRes<IGenre[]> => axiosService.get<IGenre[]>(urls.genres.base)
 }
 
 export {
