@@ -24,14 +24,17 @@ const MovieGenres = () => {
 
 
     return (
-        <div className={css.Movies}>
-            {movies.map(movie => (
-                <Movie key={movie.id} movie={movie}/>
-            ))}
-            <div>
-                <PaginationComponent/>
+        <div className={css.Body}>
+            <div className={css.Movies}>
+                {movies.map(movie => (
+                    <Movie key={movie.id} movie={movie}/>
+                ))}
+                <div>
+                    <PaginationComponent/>
+                </div>
             </div>
         </div>
+
     );
 };
 
