@@ -14,7 +14,7 @@ let router = createBrowserRouter([
             {path: 'movies/:id', element: <SingleMoviePage/>},
 
             {path: 'genres/:genreId', element: <GenresPage/>},
-            {path: 'genres/:genreId/:id', element: <SingleMoviePage/>},
+            {path: 'genres/:genreId/:id', element: <Navigate to={`/movies/:id`} replace={true}/>},
 
             {path: 'search', element: <SearchPage/>}
         ]

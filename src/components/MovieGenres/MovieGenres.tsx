@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 import {useParams, useSearchParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 
-import {Movie} from "../Movie/Movie";
 import {moviesActions} from "../../redux";
 import css from '../Movies/Movies.module.css'
 import {PaginationComponent} from "../PaginationComponent/PaginationComponent";
+import {Movie} from "../Movie/Movie";
+
 
 
 const MovieGenres = () => {

@@ -27,3 +27,7 @@
     font-size: 16px;
     padding: 0;
 }
+.Button:hover{
+    cursor: pointer;
+    color: darkgray;
+}
