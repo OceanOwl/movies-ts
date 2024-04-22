@@ -10,4 +10,6 @@
 .Header a {
     padding-left: 10px;
 }
-
+.Header a:hover{
+    color: darkgray;
+}
