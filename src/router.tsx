@@ -14,6 +14,8 @@ let router = createBrowserRouter([
             {path: 'movies/:id', element: <SingleMoviePage/>},
 
             {path: 'genres/:genreId', element: <GenresPage/>},
+            {path: 'genres/:genreId/:id', element: <SingleMoviePage/>},
+
             {path: 'search', element: <SearchPage/>}
         ]
 

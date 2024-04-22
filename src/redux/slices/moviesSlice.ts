@@ -28,18 +28,34 @@ const initialState: IState = {
     genres: []
 
 };
+interface GetAllByGenreIdArgs {
+    page: number;
+    id: string;
+}
 
 const getAll = createAsyncThunk<IPagination<IMovie>, number>(
     'moviesSlice/getAll',
     async (page, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getAll(page);
+            const {data} = await movieService.getAll(page, '');
             return data
         } catch (e) {
             return rejectWithValue(e)
         }
     }
 );
+const getAllByGenreId = createAsyncThunk<IPagination<IMovie>, GetAllByGenreIdArgs >(
+    'moviesSlice/getAllByGenreId',
+    async ({page,id}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getAll(page, id);
+            return data
+        } catch (e) {
+            return rejectWithValue(e)
+        }
+    }
+);
+
 
 const getById = createAsyncThunk<IMovie, { id: string }>(
     'moviesSlice/getById',
@@ -85,6 +101,10 @@ const moviesSlice = createSlice({
         builder =>
             builder
                 .addCase(getAll.fulfilled, (state, action) => {
+                    state.loading = false;
+                    state.page = action.payload;
+                    state.movies = action.payload?.results || [];
+                }).addCase(getAllByGenreId.fulfilled, (state, action) => {
                     state.loading = false;
                     state.page = action.payload;
                     state.movies = action.payload?.results || [];
@@ -140,7 +160,8 @@ const moviesActions = {
     getAll,
     getById,
     getMovieTrailers,
-    getGenres
+    getGenres,
+    getAllByGenreId
 
 }
 
